@@ -4,10 +4,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+<h:head>
+    <h:outputStylesheet name="css/jsfcrud.css"/>
+</h:head>
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListCarTitle}"></h:outputText>
+            <h:outputText value="Cars"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
@@ -19,60 +23,26 @@
                     <h:outputText value="#{carController.pagination.pageFirstItem + 1}..#{carController.pagination.pageLastItem + 1}/#{carController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{carController.previous}" value="#{bundle.Previous} #{carController.pagination.pageSize}" rendered="#{carController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{carController.next}" value="#{bundle.Next} #{carController.pagination.pageSize}" rendered="#{carController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{carController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_carId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.carId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_brand}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.brand}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_model}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.model}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_carYear}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.carYear}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_price}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.price}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_status}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.status}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{carController.prepareView}" value="#{bundle.ListCarViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{carController.prepareEdit}" value="#{bundle.ListCarEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{carController.destroy}" value="#{bundle.ListCarDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+       <div class="car-container">
+    <ui:repeat value="#{carController.items}" var="car"
+               xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+        <div class="car-card">
+            <h3>#{car.brand} #{car.model}</h3>
+ 
+            <p>#{car.carYear}</p>
+            <p>$#{car.price}</p>
+ 
+            <h:commandButton value="Buy"
+                action="#{orderBean.buyCar(car.carId, car.price)}"
+                styleClass="btn"/>
+        </div>
+    </ui:repeat>
+</div>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{carController.prepareCreate}" value="#{bundle.ListCarCreateLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListCarIndexLink}"/>
+                <h:link outcome="/index" value="Back"/>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -25,6 +25,8 @@
                     <h:inputText id="phone" value="#{customerController.selected.phone}" title="#{bundle.EditCustomerTitle_phone}" />
                     <h:outputLabel value="#{bundle.EditCustomerLabel_address}" for="address" />
                     <h:inputText id="address" value="#{customerController.selected.address}" title="#{bundle.EditCustomerTitle_address}" />
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{customerController.selected.password}" title="#{bundle.EditCustomerTitle_password}" />
                 </h:panelGrid>
                 <h:commandLink action="#{customerController.update}" value="#{bundle.EditCustomerSaveLink}"/>
                 <br />

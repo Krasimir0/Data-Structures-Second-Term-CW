@@ -25,6 +25,8 @@
                     <h:inputText id="phone" value="#{customerController.selected.phone}" title="#{bundle.CreateCustomerTitle_phone}" />
                     <h:outputLabel value="#{bundle.CreateCustomerLabel_address}" for="address" />
                     <h:inputText id="address" value="#{customerController.selected.address}" title="#{bundle.CreateCustomerTitle_address}" />
+                    <h:outputLabel value="#{bundle.CreateCustomerLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{customerController.selected.password}" title="#{bundle.CreateCustomerTitle_password}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{customerController.create}" value="#{bundle.CreateCustomerSaveLink}" />

@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListOrdersTitle}"></h:outputText>
+            <h:outputText value="CARS ORDERS"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
@@ -22,13 +22,13 @@
                     <h:dataTable value="#{ordersController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_orderId}"/>
+                                <h:outputText value="orderId"/>
                             </f:facet>
                             <h:outputText value="#{item.orderId}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_orderDate}"/>
+                                <h:outputText value="orderDate"/>
                             </f:facet>
                             <h:outputText value="#{item.orderDate}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -36,45 +36,34 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_totalAmount}"/>
+                                <h:outputText value="totalAmount"/>
                             </f:facet>
                             <h:outputText value="#{item.totalAmount}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_status}"/>
+                                <h:outputText value="status"/>
                             </f:facet>
                             <h:outputText value="#{item.status}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_carId}"/>
+                                <h:outputText value="carId"/>
                             </f:facet>
                             <h:outputText value="#{item.carId}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_customerId}"/>
+                                <h:outputText value="customerId"/>
                             </f:facet>
                             <h:outputText value="#{item.customerId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{ordersController.prepareView}" value="#{bundle.ListOrdersViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ordersController.prepareEdit}" value="#{bundle.ListOrdersEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ordersController.destroy}" value="#{bundle.ListOrdersDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{ordersController.prepareCreate}" value="#{bundle.ListOrdersCreateLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListOrdersIndexLink}"/>
+                <h:link outcome="/index" value="BACK"/>
             </h:form>
         </ui:define>
     </ui:composition>
