@@ -33,6 +33,9 @@ import java.util.Date;
     @NamedQuery(name = "Orders.findByStatus", query = "SELECT o FROM Orders o WHERE o.status = :status")})
 public class Orders implements Serializable {
 
+    @Column(name = "CAR_NAME")
+    private String carName;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -137,6 +140,14 @@ public class Orders implements Serializable {
     @Override
     public String toString() {
         return "entities.Orders[ orderId=" + orderId + " ]";
+    }
+
+    public String getCarName() {
+        return carName;
+    }
+
+    public void setCarName(String carName) {
+        this.carName = carName;
     }
     
 }

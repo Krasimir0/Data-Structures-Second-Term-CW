@@ -33,6 +33,8 @@
                     <h:selectOneMenu id="customerId" value="#{ordersController.selected.customerId}" title="#{bundle.CreateOrdersTitle_customerId}" >
                         <f:selectItems value="#{customerController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrdersLabel_carName}" for="carName" />
+                    <h:inputText id="carName" value="#{ordersController.selected.carName}" title="#{bundle.CreateOrdersTitle_carName}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{ordersController.create}" value="#{bundle.CreateOrdersSaveLink}" />
