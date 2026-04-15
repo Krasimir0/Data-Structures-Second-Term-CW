@@ -19,62 +19,62 @@
                     <h:outputText value="#{ordersController.pagination.pageFirstItem + 1}..#{ordersController.pagination.pageLastItem + 1}/#{ordersController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{ordersController.previous}" value="#{bundle.Previous} #{ordersController.pagination.pageSize}" rendered="#{ordersController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{ordersController.next}" value="#{bundle.Next} #{ordersController.pagination.pageSize}" rendered="#{ordersController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{ordersController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_orderId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.orderId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_orderDate}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.orderDate}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_totalAmount}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.totalAmount}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_status}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.status}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_carId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.carId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_customerId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.customerId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdersTitle_carName}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.carName}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{ordersController.prepareView}" value="#{bundle.ListOrdersViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ordersController.prepareEdit}" value="#{bundle.ListOrdersEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ordersController.destroy}" value="#{bundle.ListOrdersDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                    <div class="orders-container">
+
+                        <ui:repeat value="#{ordersController.items}" var="item">
+
+                            <div class="order-card">
+
+                                <!-- HEADER -->
+                                <div class="order-header">
+                                    🧾 Order ##{item.orderId}
+                                </div>
+
+                                <!-- BODY -->
+                                <div class="order-body">
+
+                                    <p><b>🚗 Car:</b> #{item.carName}</p>
+
+                                    <p><b>📅 Date:</b>
+                                        <h:outputText value="#{item.orderDate}">
+                                            <f:convertDateTime pattern="dd MMM yyyy" />
+                                        </h:outputText>
+                                    </p>
+
+                                    <p><b>👤 Customer ID:</b> #{item.customerId}</p>
+
+                                    <p><b>💰 Total:</b> $#{item.totalAmount}</p>
+
+                                    <!-- STATUS BADGE -->
+                                    <h:panelGroup rendered="#{item.status eq 'PAID'}">
+                                        <span class="badge paid">Paid</span>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup rendered="#{item.status eq 'PENDING'}">
+                                        <span class="badge pending">Pending</span>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup rendered="#{item.status eq 'CANCELLED'}">
+                                        <span class="badge cancelled">Cancelled</span>
+                                    </h:panelGroup>
+
+                                </div>
+
+                                <!-- ACTIONS -->
+                                <div class="order-actions">
+
+                                    <h:commandButton value="Cancel"
+                                                     action="#{orderBean.cancelOrder(item.orderId, item.carId.carId)}"
+                                                     rendered="#{item.customerId.customerId == authBean.customerId}"
+                                                     styleClass="btn small danger"/>
+
+                                </div>
+
+                            </div>
+
+                        </ui:repeat>
+
+                    </div>
                 </h:panelGroup>
                 <br />
                 <h:commandLink action="#{ordersController.prepareCreate}" value="#{bundle.ListOrdersCreateLink}"/>

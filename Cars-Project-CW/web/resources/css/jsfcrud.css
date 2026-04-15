@@ -36,6 +36,51 @@ body {
     cursor: pointer;
 }
  
+.car-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* buttons inside car actions */
+.car-actions .btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+/* hover effect */
+.car-actions .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* optional buy button style */
+.car-actions .btn.small {
+    background: #2d89ef;
+    color: white;
+}
+
+.car-actions .btn.small:hover {
+    background: #1b6fd6;
+}
+
+/* outline style (login button) */
+.car-actions .btn-outline {
+    background: transparent;
+    border: 1px solid #2d89ef;
+    color: #2d89ef;
+}
+
+.car-actions .btn-outline:hover {
+    background: #2d89ef;
+    color: white;
+}
+
 .btn:hover {
     background: #2980b9;
 }
@@ -196,6 +241,113 @@ body {
     color: white;
     text-align: center;
     padding: 15px;
+}
+.search-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.search-input {
+    padding: 8px;
+    width: 250px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.stat-box {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-weight: bold;
+}
+
+.badge {
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+}
+
+.orders-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.order-card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+}
+
+.order-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.order-body p {
+    margin: 6px 0;
+}
+
+.order-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.available {
+    background: green;
+}
+
+.sold {
+    background: red;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.paid {
+    background: #d4f8d4;
+    color: green;
+}
+
+.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.cancelled {
+    background: #f8d7da;
+    color: #721c24;
 }
 
 body {

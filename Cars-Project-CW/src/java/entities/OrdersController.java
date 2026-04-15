@@ -51,6 +51,11 @@ public class OrdersController implements Serializable {
         }
         return jpaController;
     }
+    
+    public void refresh() {
+        items = null;
+        pagination = null;
+    }
 
     public PaginationHelper getPagination() {
         if (pagination == null) {
@@ -166,6 +171,10 @@ public class OrdersController implements Serializable {
             items = getPagination().createPageDataModel();
         }
         return items;
+    }
+    
+    public void setItems(DataModel items) {
+        this.items = items;
     }
 
     private void recreateModel() {

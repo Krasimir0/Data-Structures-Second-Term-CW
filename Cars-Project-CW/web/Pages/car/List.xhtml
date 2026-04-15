@@ -6,9 +6,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ListCarTitle}"></h:outputText>
-        </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
@@ -19,60 +16,56 @@
                     <h:outputText value="#{carController.pagination.pageFirstItem + 1}..#{carController.pagination.pageLastItem + 1}/#{carController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{carController.previous}" value="#{bundle.Previous} #{carController.pagination.pageSize}" rendered="#{carController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{carController.next}" value="#{bundle.Next} #{carController.pagination.pageSize}" rendered="#{carController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{carController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_carId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.carId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_brand}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.brand}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_model}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.model}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_carYear}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.carYear}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_price}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.price}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCarTitle_status}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.status}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{carController.prepareView}" value="#{bundle.ListCarViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{carController.prepareEdit}" value="#{bundle.ListCarEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{carController.destroy}" value="#{bundle.ListCarDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                    <div class="car-container">
+
+                        <ui:repeat value="#{carController.items}" var="item">
+                           <h:panelGroup rendered="#{item.status ne 'SOLD'}">
+                            <div class="car-card">
+
+                                <div class="car-header">
+                                    🚗 #{item.brand} #{item.model}
+                                </div>
+
+                                <div class="car-body">
+                                    <p><b>Year:</b> #{item.carYear}</p>
+                                    <p><b>Status:</b> #{item.status}</p>
+
+                                    <div class="price">
+                                        💰 $#{item.price}
+                                    </div>
+                                </div>
+                                <div class="car-actions">
+                                    <h:panelGroup>
+
+                                        <h:commandButton value="Buy"
+                                                         action="#{orderBean.buyCar(item.carId, item.price, item.brand)}"
+                                                         rendered="#{authBean.loggedIn}"
+                                                         styleClass="btn small"/>
+
+                                        
+                                        <h:link outcome="/login"
+                                                value="Login to Buy"
+                                                rendered="#{!authBean.loggedIn}"
+                                                styleClass="btn small"/>
+
+                                    </h:panelGroup>
+                                </div>
+
+                            </div>
+                          </h:panelGroup>
+                        </ui:repeat>
+
+                    </div>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{carController.prepareCreate}" value="#{bundle.ListCarCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListCarIndexLink}"/>
+                <br/>
+                <h:commandLink action="#{carController.prepareCreate}"
+                               value="➕ Add Car"
+                               styleClass="btn small"/>
+
+                <br/><br/>
+                <h:link outcome="/index" value="⬅ Back to Home" styleClass="btn small btn-outline"/>
+                <br/>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -26,6 +26,7 @@ public class AuthBean implements Serializable {
     private String name;
     private String email;
     private String password;
+    private boolean loggedIn = false;
     
     public String getName() {
     return name;
@@ -146,8 +147,10 @@ if (password == null || password.length() < 6) {
             ResultSet rs = ps.executeQuery();
  
             if (rs.next()) {
-                customerId = rs.getInt("customer_id"); 
+                 customerId = rs.getInt("customer_id");
                 name = rs.getString("name");
+                email = rs.getString("email");
+                loggedIn = true;
                 return "/index?faces-redirect=true";
             } else {
                 FacesContext.getCurrentInstance().addMessage(null,
@@ -168,6 +171,7 @@ if (password == null || password.length() < 6) {
         name = null;
         email = null;
         password = null;
+        loggedIn = false;
         return "/login?faces-redirect=true";
     }
     

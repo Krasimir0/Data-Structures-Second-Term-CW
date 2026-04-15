@@ -33,9 +33,41 @@ public class CarController implements Serializable {
     private CarJpaController jpaController = null;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private String searchQuery;
 
     public CarController() {
     }
+    
+    public String getSearchQuery() {
+        return searchQuery;
+    }
+
+    public void setSearchQuery(String searchQuery) {
+        this.searchQuery = searchQuery;
+    }
+    
+    public String search() {
+    recreateModel();
+
+    items = new ListDataModel(
+        getJpaController().findCarEntities()
+    );
+
+    // simple filter in memory (safe for now)
+    if (searchQuery != null && !searchQuery.isEmpty()) {
+        items = new ListDataModel(
+            getJpaController().findCarEntities()
+                .stream()
+                .filter(c ->
+                    c.getBrand().toLowerCase().contains(searchQuery.toLowerCase()) ||
+                    c.getModel().toLowerCase().contains(searchQuery.toLowerCase())
+                )
+                .toList()
+        );
+    }
+
+    return null;
+}
 
     public Car getSelected() {
         if (current == null) {
@@ -44,7 +76,11 @@ public class CarController implements Serializable {
         }
         return current;
     }
-
+    
+    public void refresh() {
+            items = null;
+            pagination = null;
+    }
     private CarJpaController getJpaController() {
         if (jpaController == null) {
             jpaController = new CarJpaController(utx, emf);
@@ -168,8 +204,12 @@ public class CarController implements Serializable {
         return items;
     }
 
-    private void recreateModel() {
+    public void recreateModel() {
         items = null;
+    }
+    
+    public void setItems(DataModel items) {
+        this.items = items;
     }
 
     private void recreatePagination() {

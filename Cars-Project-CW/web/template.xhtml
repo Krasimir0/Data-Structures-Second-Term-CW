@@ -11,9 +11,45 @@
     </h:head>
 
     <h:body>
-        <h1>
-            <ui:insert name="title">Default Title</ui:insert>
-        </h1>
+        <div class="navbar">
+            <div class="logo">🚗 CarShop</div>
+
+            <div class="nav-links">
+                <h:link outcome="/index" value="Home" />
+                <h:link outcome="/Pages/car/List" value="Cars" />
+                <h:link outcome="/Pages/orders/List" value="Orders" />
+                <h:link outcome="/about" value="About" />
+            </div>
+
+            <h:form>
+
+                <div class="auth-buttons">
+
+                 
+                    <h:panelGroup rendered="#{!authBean.loggedIn}">
+                        <h:link outcome="/login" value="Login" styleClass="btn small"/>
+                        <h:link outcome="/register" value="Register" styleClass="btn small btn-outline"/>
+                    </h:panelGroup>
+
+                    
+                    <h:panelGroup rendered="#{authBean.loggedIn}">
+
+                        <span class="user-info">
+                            <i class="fa fa-user"></i>
+                            #{authBean.email}
+                        </span>
+
+                        <h:commandButton value="Logout"
+                                         action="#{authBean.logout()}"
+                                         styleClass="btn small"/>
+
+                    </h:panelGroup>
+
+                </div>
+
+            </h:form>
+        </div>
+        
         <p>
             <ui:insert name="body">Default Body</ui:insert>
         </p>

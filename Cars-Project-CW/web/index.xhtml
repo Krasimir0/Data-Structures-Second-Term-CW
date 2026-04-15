@@ -23,13 +23,13 @@
 
                 <div class="auth-buttons">
 
-                    <!-- NOT logged in -->
+                 
                     <h:panelGroup rendered="#{!authBean.loggedIn}">
                         <h:link outcome="/login" value="Login" styleClass="btn small"/>
                         <h:link outcome="/register" value="Register" styleClass="btn small btn-outline"/>
                     </h:panelGroup>
 
-                    <!-- LOGGED in -->
+                    
                     <h:panelGroup rendered="#{authBean.loggedIn}">
 
                         <span class="user-info">
@@ -48,7 +48,6 @@
             </h:form>
         </div>
 
-        <!-- HERO SECTION -->
         <div class="hero">
             <h1>Find Your Dream Car 🚘</h1>
             <p>Browse, choose, and buy cars</p>
@@ -56,7 +55,6 @@
             <h:link outcome="/Pages/car/List" value="Shop Now" styleClass="btn hero-btn"/>
         </div>
 
-        <!-- FEATURES -->
         <div class="features">
 
             <div class="card">
@@ -76,23 +74,11 @@
 
         </div>
 
-        <!-- FOOTER -->
         <div class="footer">
             © 2026 Car E-Commerce
         </div>
 
         <br />
-        <h:link outcome="/car/List" value="Show All Car Items"/>
-        <br />
-        <h:link outcome="/customer/List" value="Show All Customer Items"/>
-        <br />
-        <h:link outcome="/orders/List" value="Show All Orders Items"/>
-        <br />
-        <h:link outcome="/Pages/customer/List" value="Show All Customer Items"/>
+    
     </h:body>
-
-
-
-
-
 </html>
