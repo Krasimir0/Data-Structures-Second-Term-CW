@@ -7,7 +7,7 @@ body {
     font-family: Arial, sans-serif;
     background: #f4f6f8;
 }
- /* CAR GRID */
+
 .car-container {
     display: flex;
     flex-wrap: wrap;
@@ -15,7 +15,7 @@ body {
     gap: 20px;
 }
  
-/* CARD */
+
 .car-card {
     background: white;
     padding: 20px;
@@ -44,7 +44,6 @@ body {
     align-items: center;
 }
 
-/* buttons inside car actions */
 .car-actions .btn {
     padding: 8px 12px;
     border-radius: 8px;
@@ -54,12 +53,11 @@ body {
     transition: 0.2s ease;
 }
 
-/* hover effect */
+
 .car-actions .btn:hover {
     transform: translateY(-2px);
 }
 
-/* optional buy button style */
 .car-actions .btn.small {
     background: #2d89ef;
     color: white;
@@ -69,7 +67,6 @@ body {
     background: #1b6fd6;
 }
 
-/* outline style (login button) */
 .car-actions .btn-outline {
     background: transparent;
     border: 1px solid #2d89ef;
@@ -80,9 +77,6 @@ body {
     background: #2d89ef;
     color: white;
 }
-/* =========================
-   CREATE CAR PAGE (FORM)
-========================= */
 
 h1, h2, h3 {
     font-family: Arial, sans-serif;
@@ -92,7 +86,7 @@ body {
     background: #f4f6f9;
 }
 
-/* Center form container */
+
 .create-form-wrapper {
     max-width: 600px;
     margin: 40px auto;
@@ -102,19 +96,19 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* JSF panelGrid */
+
 .create-form-wrapper table {
     width: 100%;
     border-spacing: 12px;
 }
 
-/* Labels */
+
 .create-form-wrapper label {
     font-weight: 600;
     color: #333;
 }
 
-/* Inputs */
+
 .create-form-wrapper input[type="text"],
 .create-form-wrapper input[type="number"],
 .create-form-wrapper textarea,
@@ -133,7 +127,7 @@ body {
     box-shadow: 0 0 0 3px rgba(74,144,226,0.2);
 }
 
-/* Buttons */
+
 .create-form-wrapper .btn,
 .create-form-wrapper input[type="submit"],
 .create-form-wrapper input[type="button"] {
@@ -151,7 +145,7 @@ body {
     background: #357abd;
 }
 
-/* Secondary button */
+
 .create-form-wrapper .btn-outline {
     background: transparent;
     border: 1px solid #4a90e2;
@@ -163,7 +157,7 @@ body {
     color: white;
 }
 
-/* Save button emphasis */
+
 .create-form-wrapper .save-btn {
     background: #28a745;
 }
@@ -172,9 +166,75 @@ body {
     background: #1f8a36;
 }
 
-/* Messages */
+
 .ui-messages-info {
     color: #2e7d32;
+}
+.about-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border-radius: 12px;
+    margin: 20px;
+}
+
+.about-hero h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.about-hero p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.about-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+}
+
+.about-card h2 {
+    margin-bottom: 10px;
+    color: #1e3c72;
+}
+
+.about-card ul {
+    padding-left: 18px;
+}
+
+.highlight {
+    grid-column: 1 / -1;
+    background: #f5f8ff;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.stat h3 {
+    font-size: 28px;
+    color: #2a5298;
 }
 
 .ui-messages-error {
@@ -183,7 +243,7 @@ body {
 .btn:hover {
     background: #2980b9;
 }
-/* NAVBAR */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -208,7 +268,7 @@ body {
     margin-left: 10px;
 }
  
-/* HERO */
+
 .hero {
     text-align: center;
     padding: 80px 20px;
@@ -225,7 +285,7 @@ body {
     margin: 10px 0 20px;
 }
  
-/* BUTTONS */
+
 .btn {
     padding: 10px 20px;
     background: #3498db;
@@ -252,7 +312,7 @@ body {
     padding: 15px 30px;
 }
  
-/* FEATURES */
+
 .features {
     display: flex;
     justify-content: center;
@@ -276,7 +336,7 @@ body {
     background: linear-gradient(to right, #3498db, #2ecc71);
 }
  
-/* CARD */
+
 .auth-card {
     background: white;
     padding: 40px;
@@ -286,12 +346,12 @@ body {
     text-align: center;
 }
  
-/* TITLE */
+
 .auth-card h2 {
     margin-bottom: 20px;
 }
  
-/* INPUTS */
+
 .auth-card input {
     width: 90%;
     padding: 12px;
@@ -300,7 +360,7 @@ body {
     border: 1px solid #ccc;
 }
  
-/* BUTTON */
+
 .auth-btn {
     width: 100%;
     padding: 12px;
@@ -316,7 +376,7 @@ body {
     background: #2980b9;
 }
  
-/* LINK */
+
 .auth-link {
     margin-top: 10px;
     display: block;
@@ -455,7 +515,7 @@ body {
     background: #f4f6f9;
 }
  
-/* NAVBAR */
+
 .navbar {
     background: #2c3e50;
     padding: 15px;
@@ -475,13 +535,13 @@ body {
     color: #3498db;
 }
  
-/* CONTAINER */
+
 .container {
     width: 80%;
     margin: 30px auto;
 }
  
-/* FORM CARD */
+
 .form-container {
     width: 350px;
     margin: 80px auto;
@@ -492,7 +552,6 @@ body {
     text-align: center;
 }
  
-/* INPUTS */
 input {
     width: 90%;
     padding: 12px;
@@ -501,7 +560,6 @@ input {
     border: 1px solid #ccc;
 }
  
-/* BUTTON */
 .btn {
     margin-top: 15px;
     padding: 12px;
@@ -517,7 +575,6 @@ input {
     background: #2980b9;
 }
  
-/* TABLE */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -537,7 +594,6 @@ td {
     text-align: center;
 }
  
-/* ABOUT PAGE */
 .about-box {
     background: white;
     padding: 30px;
@@ -546,7 +602,6 @@ td {
     line-height: 1.6;
 }
  
-/* TITLE */
 .title {
     text-align: center;
     margin-bottom: 20px;

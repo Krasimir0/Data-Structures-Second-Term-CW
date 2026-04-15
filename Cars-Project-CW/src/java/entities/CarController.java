@@ -134,13 +134,16 @@ public class CarController implements Serializable {
                      
             getJpaController().create(current);
             
-            recreateModel();
-            recreatePagination();
-
             JsfUtil.addSuccessMessage(
                     ResourceBundle.getBundle("/Bundle").getString("CarCreated")
             );
-            return prepareCreate();
+            
+            recreateModel();
+            recreatePagination();
+            
+            return "List?faces-redirect=true";
+            
+         
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

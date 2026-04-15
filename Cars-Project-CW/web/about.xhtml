@@ -1,54 +1,111 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-<h:head>
-    <title>Car E-Commerce</title>
-    <h:outputStylesheet name="css/jsfcrud.css"/>
-</h:head>
- <h:body>
-    <div class="navbar">
+
+    <h:head>
+        <title>About Us - CarShop</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+
+    <h:body>
+
+        <!-- NAVBAR -->
+        <div class="navbar">
             <div class="logo">🚗 CarShop</div>
 
             <div class="nav-links">
-                <h:link outcome="/index" value="Home" />
-                <h:link outcome="/Pages/car/List" value="Cars" />
-                <h:link outcome="/Pages/orders/List" value="Orders" />
-                <h:link outcome="/about" value="About" />
+                <h:link outcome="/index" value="Home"/>
+                <h:link outcome="/Pages/car/List" value="Cars"/>
+                <h:link outcome="/Pages/orders/List" value="Orders"/>
+                <h:link outcome="/about" value="About"/>
             </div>
-            
-    <h:form>
 
-    <div class="auth-buttons">
+            <h:form>
+                <div class="auth-buttons">
 
-        <!-- NOT logged in -->
-        <h:panelGroup rendered="#{!authBean.loggedIn}">
-            <h:link outcome="/login" value="Login" styleClass="btn small"/>
-            <h:link outcome="/register" value="Register" styleClass="btn small btn-outline"/>
-        </h:panelGroup>
+                    <h:panelGroup rendered="#{!authBean.loggedIn}">
+                        <h:link outcome="/login" value="Login" styleClass="btn small"/>
+                        <h:link outcome="/register" value="Register" styleClass="btn small btn-outline"/>
+                    </h:panelGroup>
 
-        <!-- LOGGED in -->
-        <h:panelGroup rendered="#{authBean.loggedIn}">
+                    <h:panelGroup rendered="#{authBean.loggedIn}">
+                        <span class="user-info">
+                            👤 #{authBean.email}
+                        </span>
 
-            <span class="user-info">
-                <i class="fa fa-user"></i>
-                #{authBean.email}
-            </span>
+                        <h:commandButton value="Logout"
+                                         action="#{authBean.logout()}"
+                                         styleClass="btn small"/>
+                    </h:panelGroup>
 
-            <h:commandButton value="Logout"
-                action="#{authBean.logout()}"
-                styleClass="btn small"/>
+                </div>
+            </h:form>
+        </div>
 
-        </h:panelGroup>
+       
+        <div class="about-hero">
+            <h1>About CarShop</h1>
+            <p>Driving your future with trust, speed, and quality.</p>
+        </div>
 
-    </div>
+        
+        <div class="about-container">
 
-</h:form>
+            <div class="about-card">
+                <h2>🚀 Who We Are</h2>
+                <p>
+                    CarShop is a modern car e-commerce platform built with JSF and GlassFish.
+                    Our goal is to make buying and selling cars simple, fast, and secure.
+                </p>
+            </div>
 
-    </div>
-    <div class="container">
-        <h2>About Us</h2>
-        <p>This is a simple car e-commerce system built using JSF and GlassFish.</p>
-    </div>
-</h:body>
+            <div class="about-card">
+                <h2>🎯 Our Mission</h2>
+                <p>
+                    We aim to connect customers with their dream cars through a smooth digital experience,
+                    eliminating complexity and reducing waiting time.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <h2>💡 Why Choose Us</h2>
+                <ul>
+                    <li>✔ Secure user authentication system</li>
+                    <li>✔ Fast car browsing and search</li>
+                    <li>✔ Easy order management</li>
+                    <li>✔ Real-time availability status</li>
+                </ul>
+            </div>
+
+            <div class="about-card highlight">
+                <h2>📊 Platform Highlights</h2>
+                <div class="stats-grid">
+                    <div class="stat">
+                        <h3>100%</h3>
+                        <p>Secure Transactions</p>
+                    </div>
+                    <div class="stat">
+                        <h3>24/7</h3>
+                        <p>Availability</p>
+                    </div>
+                    <div class="stat">
+                        <h3>Fast</h3>
+                        <p>Order Processing</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <h2>📞 Contact</h2>
+                <p>
+                    Need help? Reach us at <b>support@carshop.com</b> or use the system messaging.
+                </p>
+            </div>
+
+        </div>
+
+    </h:body>
 </html>
