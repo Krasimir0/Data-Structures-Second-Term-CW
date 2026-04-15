@@ -19,6 +19,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceUnit;
 import jakarta.transaction.UserTransaction;
 
+
 @Named("customerController")
 @SessionScoped
 public class CustomerController implements Serializable {
@@ -51,7 +52,6 @@ public class CustomerController implements Serializable {
         }
         return jpaController;
     }
-
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -63,7 +63,7 @@ public class CustomerController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getJpaController().findCustomerEntities(getPageSize(), getPageFirstItem()));
+                     return new ListDataModel(getJpaController().findCustomerEntities(getPageSize(), getPageFirstItem() ));
                 }
             };
         }
@@ -76,7 +76,7 @@ public class CustomerController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Customer) getItems().getRowData();
+        current = (Customer)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
@@ -99,7 +99,7 @@ public class CustomerController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Customer) getItems().getRowData();
+        current = (Customer)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -116,7 +116,7 @@ public class CustomerController implements Serializable {
     }
 
     public String destroy() {
-        current = (Customer) getItems().getRowData();
+        current = (Customer)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -150,7 +150,7 @@ public class CustomerController implements Serializable {
         int count = getJpaController().getCustomerCount();
         if (selectedItemIndex >= count) {
             // selected index cannot be bigger than number of items:
-            selectedItemIndex = count - 1;
+            selectedItemIndex = count-1;
             // go to previous page if last page disappeared:
             if (pagination.getPageFirstItem() >= count) {
                 pagination.previousPage();
@@ -196,7 +196,8 @@ public class CustomerController implements Serializable {
         return JsfUtil.getSelectItems(getJpaController().findCustomerEntities(), true);
     }
 
-    @FacesConverter(forClass = Customer.class)
+
+    @FacesConverter(forClass=Customer.class)
     public static class CustomerControllerConverter implements Converter {
 
         @Override
@@ -204,7 +205,7 @@ public class CustomerController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            CustomerController controller = (CustomerController) facesContext.getApplication().getELResolver().
+            CustomerController controller = (CustomerController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "customerController");
             return controller.getJpaController().findCustomer(getKey(value));
         }
@@ -230,7 +231,7 @@ public class CustomerController implements Serializable {
                 Customer o = (Customer) object;
                 return getStringKey(o.getCustomerId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Customer.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+Customer.class.getName());
             }
         }
 

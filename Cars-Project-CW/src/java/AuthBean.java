@@ -174,4 +174,8 @@ if (password == null || password.length() < 6) {
     public boolean isLoggedIn() {
     return customerId != 0;
 }
+    
+    public int getCustomerId() {
+    return customerId;
+}
 }
