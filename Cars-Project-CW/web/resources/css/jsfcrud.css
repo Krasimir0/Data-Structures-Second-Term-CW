@@ -80,7 +80,106 @@ body {
     background: #2d89ef;
     color: white;
 }
+/* =========================
+   CREATE CAR PAGE (FORM)
+========================= */
 
+h1, h2, h3 {
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+}
+
+/* Center form container */
+.create-form-wrapper {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* JSF panelGrid */
+.create-form-wrapper table {
+    width: 100%;
+    border-spacing: 12px;
+}
+
+/* Labels */
+.create-form-wrapper label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Inputs */
+.create-form-wrapper input[type="text"],
+.create-form-wrapper input[type="number"],
+.create-form-wrapper textarea,
+.create-form-wrapper select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.create-form-wrapper input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74,144,226,0.2);
+}
+
+/* Buttons */
+.create-form-wrapper .btn,
+.create-form-wrapper input[type="submit"],
+.create-form-wrapper input[type="button"] {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-right: 10px;
+}
+
+.create-form-wrapper .btn:hover {
+    background: #357abd;
+}
+
+/* Secondary button */
+.create-form-wrapper .btn-outline {
+    background: transparent;
+    border: 1px solid #4a90e2;
+    color: #4a90e2;
+}
+
+.create-form-wrapper .btn-outline:hover {
+    background: #4a90e2;
+    color: white;
+}
+
+/* Save button emphasis */
+.create-form-wrapper .save-btn {
+    background: #28a745;
+}
+
+.create-form-wrapper .save-btn:hover {
+    background: #1f8a36;
+}
+
+/* Messages */
+.ui-messages-info {
+    color: #2e7d32;
+}
+
+.ui-messages-error {
+    color: #c62828;
+}
 .btn:hover {
     background: #2980b9;
 }

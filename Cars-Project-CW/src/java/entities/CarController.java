@@ -37,7 +37,7 @@ public class CarController implements Serializable {
 
     public CarController() {
     }
-    
+
     public String getSearchQuery() {
         return searchQuery;
     }
@@ -46,28 +46,31 @@ public class CarController implements Serializable {
         this.searchQuery = searchQuery;
     }
     
-    public String search() {
-    recreateModel();
-
-    items = new ListDataModel(
-        getJpaController().findCarEntities()
-    );
-
-    // simple filter in memory (safe for now)
-    if (searchQuery != null && !searchQuery.isEmpty()) {
-        items = new ListDataModel(
-            getJpaController().findCarEntities()
-                .stream()
-                .filter(c ->
-                    c.getBrand().toLowerCase().contains(searchQuery.toLowerCase()) ||
-                    c.getModel().toLowerCase().contains(searchQuery.toLowerCase())
-                )
-                .toList()
-        );
-    }
-
-    return null;
+    private int generateCarId() {
+    return (int)(System.currentTimeMillis() % 1_000_000);
 }
+
+    public String search() {
+        recreateModel();
+
+        items = new ListDataModel(
+                getJpaController().findCarEntities()
+        );
+
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            items = new ListDataModel(
+                    getJpaController().findCarEntities()
+                            .stream()
+                            .filter(c
+                                    -> c.getBrand().toLowerCase().contains(searchQuery.toLowerCase())
+                            || c.getModel().toLowerCase().contains(searchQuery.toLowerCase())
+                            )
+                            .toList()
+            );
+        }
+
+        return null;
+    }
 
     public Car getSelected() {
         if (current == null) {
@@ -76,11 +79,12 @@ public class CarController implements Serializable {
         }
         return current;
     }
-    
+
     public void refresh() {
-            items = null;
-            pagination = null;
+        items = null;
+        pagination = null;
     }
+
     private CarJpaController getJpaController() {
         if (jpaController == null) {
             jpaController = new CarJpaController(utx, emf);
@@ -125,8 +129,17 @@ public class CarController implements Serializable {
 
     public String create() {
         try {
+            current.setCarId(generateCarId());
+            current.setStatus("AVAILABLE");
+                     
             getJpaController().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CarCreated"));
+            
+            recreateModel();
+            recreatePagination();
+
+            JsfUtil.addSuccessMessage(
+                    ResourceBundle.getBundle("/Bundle").getString("CarCreated")
+            );
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -207,12 +220,12 @@ public class CarController implements Serializable {
     public void recreateModel() {
         items = null;
     }
-    
+
     public void setItems(DataModel items) {
         this.items = items;
     }
 
-    private void recreatePagination() {
+    public void recreatePagination() {
         pagination = null;
     }
 

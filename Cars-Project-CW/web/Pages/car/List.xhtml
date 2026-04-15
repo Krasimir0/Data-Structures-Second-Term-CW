@@ -50,7 +50,6 @@
 
                                     </h:panelGroup>
                                 </div>
-
                             </div>
                           </h:panelGroup>
                         </ui:repeat>
@@ -61,6 +60,7 @@
                 <br/>
                 <h:commandLink action="#{carController.prepareCreate}"
                                value="➕ Add Car"
+                               rendered="#{authBean.loggedIn}"
                                styleClass="btn small"/>
 
                 <br/><br/>
