@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Car E-Commerce</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+
+    <h:body>
+
+        <div class="navbar">
+            <div class="logo">🚗 CarShop</div>
+
+            <div class="nav-links">
+                <h:link outcome="/index" value="Home" />
+                <h:link outcome="/Pages/car/List" value="Cars" />
+                <h:link outcome="/Pages/orders/List" value="Orders" />
+                <h:link outcome="/about" value="About" />
+            </div>
+
+            <h:form>
+
+                <div class="auth-buttons">
+
+                 
+                    <h:panelGroup rendered="#{!authBean.loggedIn}">
+                        <h:link outcome="/login" value="Login" styleClass="btn small"/>
+                        <h:link outcome="/register" value="Register" styleClass="btn small btn-outline"/>
+                    </h:panelGroup>
+
+                    
+                    <h:panelGroup rendered="#{authBean.loggedIn}">
+
+                        <span class="user-info">
+                            <i class="fa fa-user"></i>
+                            #{authBean.email}
+                        </span>
+
+                        <h:commandButton value="Logout"
+                                         action="#{authBean.logout()}"
+                                         styleClass="btn small"/>
+
+                    </h:panelGroup>
+
+                </div>
+
+            </h:form>
+        </div>
+
+        <div class="hero">
+            <h1>Find Your Dream Car 🚘</h1>
+            <p>Browse, choose, and buy cars</p>
+
+            <h:link outcome="/Pages/car/List" value="Shop Now" styleClass="btn hero-btn"/>
+        </div>
+
+        <div class="features">
+
+            <div class="card">
+                <h3>🚗 Wide Selection</h3>
+                <p>Choose from many brands and models</p>
+            </div>
+
+            <div class="card">
+                <h3>💰 Best Prices</h3>
+                <p>Affordable deals and offers</p>
+            </div>
+
+            <div class="card">
+                <h3>⚡ Fast Purchase</h3>
+                <p>Buy your car in seconds</p>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            © 2026 Car E-Commerce
+        </div>
+
+        <br />
+    
+    </h:body>
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="body">
+
+            <h:form styleClass="create-form-wrapper">
+
+                <h2>Create Car</h2>
+
+                <h:panelGrid columns="3">
+
+                    <h:outputLabel value="Brand"/>
+                    <h:inputText id="brand"
+                                 value="#{carController.selected.brand}"
+                                 required="true"
+                                 requiredMessage="Brand is required"/>
+                    <h:message for="brand" styleClass="error"/>
+
+                    <h:outputLabel value="Model"/>
+                    <h:inputText id="model"
+                                 value="#{carController.selected.model}"
+                                 required="true"
+                                 requiredMessage="Model is required"/>
+                    <h:message for="model" styleClass="error"/>
+
+                    <h:outputLabel value="Year"/>
+                    <h:inputText id="year"
+                                 value="#{carController.selected.carYear}"
+                                 required="true"
+                                 requiredMessage="Year is required"/>
+                    <h:message for="year" styleClass="error"/>
+
+                    <h:outputLabel value="Price"/>
+                    <h:inputText id="price"
+                                 value="#{carController.selected.price}"
+                                 required="true"
+                                 requiredMessage="Price is required"/>
+                    <h:message for="price" styleClass="error"/>
+
+                </h:panelGrid>
+
+                <br/>
+
+                <h:commandButton value="Save"
+                                 action="#{carController.create}"
+                                 styleClass="btn"/>
+
+                <h:link outcome="/Pages/car/List"
+                        value="Back"
+                        styleClass="btn btn-outline"/>
+
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>

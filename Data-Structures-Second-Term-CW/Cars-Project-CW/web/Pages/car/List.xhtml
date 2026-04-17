@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCarEmpty}" rendered="#{carController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{carController.items.rowCount > 0}">
+                    <h:outputText value="#{carController.pagination.pageFirstItem + 1}..#{carController.pagination.pageLastItem + 1}/#{carController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{carController.previous}" value="#{bundle.Previous} #{carController.pagination.pageSize}" rendered="#{carController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{carController.next}" value="#{bundle.Next} #{carController.pagination.pageSize}" rendered="#{carController.pagination.hasNextPage}"/>&nbsp;
+
+                    <div class="search-bar">
+
+                        <h:inputText value="#{carController.searchQuery}"
+                                     styleClass="search-input"
+                                     placeholder="Search by brand or model" />
+
+                        <h:commandButton value="Search"
+                                         action="#{carController.search}"
+                                         styleClass="btn small" />
+
+                        <h:commandButton value="Reset"
+                                         action="#{carController.refresh}"
+                                         styleClass="btn small" />
+
+                    </div>
+
+                    <div class="car-container">
+
+                        <ui:repeat value="#{carController.items}" var="item">
+                            <h:panelGroup rendered="#{item.status ne 'SOLD'}">
+                                <div class="car-card">
+
+                                    <div class="car-header">
+                                        🚗 #{item.brand} #{item.model}
+                                    </div>
+
+                                    <div class="car-body">
+                                        <p><b>Year:</b> #{item.carYear}</p>
+                                        <p><b>Status:</b> #{item.status}</p>
+
+                                        <div class="price">
+                                            💰 $#{item.price}
+                                        </div>
+                                    </div>
+                                    <div class="car-actions">
+                                        <h:panelGroup>
+
+                                            <h:commandButton value="Buy"
+                                                             action="#{orderBean.buyCar(item.carId, item.price, item.brand)}"
+                                                             rendered="#{authBean.loggedIn}"
+                                                             styleClass="btn small"/>
+
+
+                                            <h:link outcome="/login"
+                                                    value="Login to Buy"
+                                                    rendered="#{!authBean.loggedIn}"
+                                                    styleClass="btn small"/>
+
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+                        </ui:repeat>
+
+                    </div>
+                </h:panelGroup>
+                <br />
+                <br/>
+                <h:commandLink action="#{carController.prepareCreate}"
+                               value="➕ Add Car"
+                               rendered="#{authBean.loggedIn}"
+                               styleClass="btn small"/>
+
+                <br/><br/>
+                <h:link outcome="/index" value="⬅ Back to Home" styleClass="btn small btn-outline"/>
+                <br/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
