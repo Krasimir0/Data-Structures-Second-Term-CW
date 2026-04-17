@@ -9,23 +9,39 @@
 
         <ui:define name="body">
 
-            <h:form styleClass="form-wrapper">
+            <h:form styleClass="create-form-wrapper">
 
                 <h2>Create Car</h2>
 
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="3">
 
                     <h:outputLabel value="Brand"/>
-                    <h:inputText value="#{carController.selected.brand}"/>
+                    <h:inputText id="brand"
+                                 value="#{carController.selected.brand}"
+                                 required="true"
+                                 requiredMessage="Brand is required"/>
+                    <h:message for="brand" styleClass="error"/>
 
                     <h:outputLabel value="Model"/>
-                    <h:inputText value="#{carController.selected.model}"/>
+                    <h:inputText id="model"
+                                 value="#{carController.selected.model}"
+                                 required="true"
+                                 requiredMessage="Model is required"/>
+                    <h:message for="model" styleClass="error"/>
 
                     <h:outputLabel value="Year"/>
-                    <h:inputText value="#{carController.selected.carYear}"/>
+                    <h:inputText id="year"
+                                 value="#{carController.selected.carYear}"
+                                 required="true"
+                                 requiredMessage="Year is required"/>
+                    <h:message for="year" styleClass="error"/>
 
                     <h:outputLabel value="Price"/>
-                    <h:inputText value="#{carController.selected.price}"/>
+                    <h:inputText id="price"
+                                 value="#{carController.selected.price}"
+                                 required="true"
+                                 requiredMessage="Price is required"/>
+                    <h:message for="price" styleClass="error"/>
 
                 </h:panelGrid>
 
