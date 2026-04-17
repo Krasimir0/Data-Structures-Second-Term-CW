@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-<h:head>
-    <title>Car E-Commerce</title>
-    <h:outputStylesheet name="css/jsfcrud.css"/>
-</h:head>
- <h:body>
-     <div class="navbar">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Car E-Commerce</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+        <div class="navbar">
             <div class="logo">🚗 CarShop</div>
 
             <div class="nav-links">
@@ -22,29 +23,37 @@
                 <h:link outcome="/register" value="Register" styleClass="btn small btn-outline"/>
             </div>
         </div>
- 
-    <div class="auth-page">
- 
-        <div class="auth-card">
-            <h2>Create Account</h2>
- 
-            <h:form>
-                
-                <h:messages infoStyle="color:green" errorStyle="color:red"/>
-                
-                <h:inputText value="#{authBean.name}" required="true" requiredMessage="Name is required" placeholder="Name"/>
-                <h:inputText value="#{authBean.email}" required="true" requiredMessage="Email is required" placeholder="Email"/>
-                <h:inputSecret value="#{authBean.password}" required="true" requiredMessage="Password is required" placeholder="Password"/>
- 
-                <h:commandButton value="Register"
-                    action="#{authBean.register()}"
-                    styleClass="auth-btn"/>
- 
-                <h:link outcome="/login" value="Already have an account?" styleClass="auth-link"/>
-            </h:form>
+
+        <div class="auth-page">
+
+            <div class="auth-card">
+                <h2>Create Account</h2>
+
+                <h:form>
+
+                    <h:messages infoStyle="color:green" errorStyle="color:red"/>
+
+                    <h:inputText value="#{authBean.name}" required="true" requiredMessage="Name is required">
+                        <f:passThroughAttribute name="placeholder" value="Name"/>
+                    </h:inputText>
+
+                    <h:inputText value="#{authBean.email}" required="true" requiredMessage="Email is required">
+                        <f:passThroughAttribute name="placeholder" value="Email"/>
+                    </h:inputText>
+
+                    <h:inputSecret value="#{authBean.password}" required="true" requiredMessage="Password is required">
+                        <f:passThroughAttribute name="placeholder" value="Password"/>
+                    </h:inputSecret>
+
+                    <h:commandButton value="Register"
+                                     action="#{authBean.register()}"
+                                     styleClass="auth-btn"/>
+
+                    <h:link outcome="/login" value="Already have an account?" styleClass="auth-link"/>
+                </h:form>
+            </div>
+
         </div>
- 
-    </div>
- 
-</h:body>
+
+    </h:body>
 </html>
