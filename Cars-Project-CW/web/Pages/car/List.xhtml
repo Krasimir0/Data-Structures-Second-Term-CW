@@ -16,42 +16,51 @@
                     <h:outputText value="#{carController.pagination.pageFirstItem + 1}..#{carController.pagination.pageLastItem + 1}/#{carController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{carController.previous}" value="#{bundle.Previous} #{carController.pagination.pageSize}" rendered="#{carController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{carController.next}" value="#{bundle.Next} #{carController.pagination.pageSize}" rendered="#{carController.pagination.hasNextPage}"/>&nbsp;
+                    <h:form styleClass="search-bar-form">
+                        <div class="search-bar">
+                            <h:inputText value="#{carController.searchQuery}" 
+                                         styleClass="search-input" 
+                                         placeholder="Search by brand or model..." />
+                            <h:commandButton value="Search" action="#{carController.search}" styleClass="btn small"/>
+                            <h:commandButton value="Reset" action="#{carController.prepareList}" styleClass="btn small"/>
+                        </div>
+                    </h:form>
                     <div class="car-container">
 
                         <ui:repeat value="#{carController.items}" var="item">
-                           <h:panelGroup rendered="#{item.status ne 'SOLD'}">
-                            <div class="car-card">
+                            <h:panelGroup rendered="#{item.status ne 'SOLD'}">
+                                <div class="car-card">
 
-                                <div class="car-header">
-                                    🚗 #{item.brand} #{item.model}
-                                </div>
+                                    <div class="car-header">
+                                        🚗 #{item.brand} #{item.model}
+                                    </div>
 
-                                <div class="car-body">
-                                    <p><b>Year:</b> #{item.carYear}</p>
-                                    <p><b>Status:</b> #{item.status}</p>
+                                    <div class="car-body">
+                                        <p><b>Year:</b> #{item.carYear}</p>
+                                        <p><b>Status:</b> #{item.status}</p>
 
-                                    <div class="price">
-                                        💰 $#{item.price}
+                                        <div class="price">
+                                            💰 $#{item.price}
+                                        </div>
+                                    </div>
+                                    <div class="car-actions">
+                                        <h:panelGroup>
+
+                                            <h:commandButton value="Buy"
+                                                             action="#{orderBean.buyCar(item.carId, item.price, item.brand)}"
+                                                             rendered="#{authBean.loggedIn}"
+                                                             styleClass="btn small"/>
+
+
+                                            <h:link outcome="/login"
+                                                    value="Login to Buy"
+                                                    rendered="#{!authBean.loggedIn}"
+                                                    styleClass="btn small"/>
+
+                                        </h:panelGroup>
                                     </div>
                                 </div>
-                                <div class="car-actions">
-                                    <h:panelGroup>
-
-                                        <h:commandButton value="Buy"
-                                                         action="#{orderBean.buyCar(item.carId, item.price, item.brand)}"
-                                                         rendered="#{authBean.loggedIn}"
-                                                         styleClass="btn small"/>
-
-                                        
-                                        <h:link outcome="/login"
-                                                value="Login to Buy"
-                                                rendered="#{!authBean.loggedIn}"
-                                                styleClass="btn small"/>
-
-                                    </h:panelGroup>
-                                </div>
-                            </div>
-                          </h:panelGroup>
+                            </h:panelGroup>
                         </ui:repeat>
 
                     </div>
