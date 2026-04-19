@@ -20,7 +20,7 @@ import java.util.Collection;
 
 /**
  *
- * @author krasi
+ * @author krasi and matthew
  */
 @Entity
 @Table(name = "CAR")

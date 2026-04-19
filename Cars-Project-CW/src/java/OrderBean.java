@@ -25,7 +25,7 @@ import java.sql.SQLException;
 @SessionScoped
 public class OrderBean implements Serializable {
 
-    @Resource(lookup = "jdbcarsDB")
+    @Resource(lookup = "jdbc/jdbcarsDB")
     private DataSource ds;
 
     @Inject
