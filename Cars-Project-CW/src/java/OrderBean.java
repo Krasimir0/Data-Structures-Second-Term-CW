@@ -25,7 +25,7 @@ import java.sql.SQLException;
 @SessionScoped
 public class OrderBean implements Serializable {
 
-    @Resource(lookup = "jdbc/jdbcarsDB")
+    @Resource(lookup = "jdbcarsDB")
     private DataSource ds;
 
     @Inject
@@ -48,7 +48,7 @@ public class OrderBean implements Serializable {
             int orderId = (int) (Math.random() * 1_000_000);
 
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO Orders (order_id, order_date, total_amount, status, car_id, customer_id, car_name)"
+                    "INSERT INTO Orders (order_id, order_date, total_amount, status, customer_id, car_id, car_name)"
                     + "VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
 
@@ -56,8 +56,8 @@ public class OrderBean implements Serializable {
             ps.setDate(2, new java.sql.Date(System.currentTimeMillis()));
             ps.setDouble(3, price);
             ps.setString(4, "PENDING");
-            ps.setInt(5, carId);
-            ps.setInt(6, authBean.getCustomerId());
+            ps.setInt(5, authBean.getCustomerId());
+            ps.setInt(6, carId);
             ps.setString(7, car_name);
 
             ps.executeUpdate();
