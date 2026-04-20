@@ -19,7 +19,7 @@ import java.sql.*;
 @Named("authBean")
 @SessionScoped
 public class AuthBean implements Serializable {
-     @Resource(lookup = "jdbcarsDB")
+     @Resource(lookup = "jdbc/jdbcarsDB")
     private DataSource ds;
  
     private int customerId;
