@@ -16,7 +16,6 @@
                     <h:outputText value="#{carController.pagination.pageFirstItem + 1}..#{carController.pagination.pageLastItem + 1}/#{carController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{carController.previous}" value="#{bundle.Previous} #{carController.pagination.pageSize}" rendered="#{carController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{carController.next}" value="#{bundle.Next} #{carController.pagination.pageSize}" rendered="#{carController.pagination.hasNextPage}"/>&nbsp;
-                    <h:form styleClass="search-bar-form">
                         <div class="search-bar">
                             <h:inputText value="#{carController.searchQuery}" 
                                          styleClass="search-input" 
@@ -24,7 +23,6 @@
                             <h:commandButton value="Search" action="#{carController.search}" styleClass="btn small"/>
                             <h:commandButton value="Reset" action="#{carController.prepareList}" styleClass="btn small"/>
                         </div>
-                    </h:form>
                     <div class="car-container">
 
                         <ui:repeat value="#{carController.items}" var="item">
